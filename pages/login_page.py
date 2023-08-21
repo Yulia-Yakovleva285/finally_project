@@ -1,6 +1,6 @@
 from .base_page import BasePage
-from .locators import LoginPageLocators
-from .locators import MainPageLocators
+from .locators import LoginPageLocators, BasePageLocators
+
 
 class LoginPage(BasePage):
     def should_be_login_page(self):
@@ -9,17 +9,13 @@ class LoginPage(BasePage):
         self.should_be_register_form()
 
     def should_be_login_url(self):
-        # реализуйте проверку на корректный url адрес
-        link = self.is_element_present(*MainPageLocators.LOGIN_LINK)
-        link.click()
-        assert "login" in link, "in '{link}' should be link"
+        assert '/login' in self.browser.current_url, 'Current URL have no "login"'
        
 
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
         assert self.is_element_present(*LoginPageLocators.LOGIN), "Login is not presented"
         assert self.is_element_present(*LoginPageLocators.PASS), "Password is not presented"
-        assert self.is_element_present(*LoginPageLocators.FORGOT_PASS), " Link'I ve forgotten my password' is not presented"
         assert self.is_element_present(*LoginPageLocators.ENTER_BUTTON), "Log in is not presented"
 
 

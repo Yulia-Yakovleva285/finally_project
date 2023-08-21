@@ -3,7 +3,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 import math
-from .locators import BasePageLocators
+from .locators import BasePageLocators, BasketPageLocators
+
 
 
 class BasePage():
@@ -64,10 +65,10 @@ class BasePage():
         except (NoSuchElementException):
             return False
         return self.browser.find_element(how, what).text
-
-
-
-
+    
+    def click_basket_button(self):
+        basket_button = self.browser.find_element(*BasketPageLocators.BASKET_BUTTON) 
+        basket_button.click()
 
     
 
