@@ -1,5 +1,5 @@
-from .base_page import BasePage
-from .locators import ProductPageLocators, MainPageLocators
+from pages.base_page import BasePage
+from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
@@ -26,4 +26,8 @@ class ProductPage(BasePage):
         print(book_price_into_basket)
         assert book_price == book_price_into_basket, "Book price doesn`t match!"
 
-     
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"
+
+    def success_message_should_disappear(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message did`t disappear!"
