@@ -1,4 +1,4 @@
-from pages.base_page import BasePage
+from .base_page import BasePage
 from .locators import ProductPageLocators
 
 
@@ -10,7 +10,7 @@ class ProductPage(BasePage):
 
     def click_button(self):
         button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET) 
-        button.click() #нажимаем добавить в корзину
+        button.click() 
     
     def should_be_same_price(self):
         book_name = self.value(*ProductPageLocators.BOOK_NAME)
